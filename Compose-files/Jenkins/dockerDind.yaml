@@ -1,0 +1,25 @@
+version: '3'
+services:
+  jenkins-docker:
+    image: docker:dind
+    container_name: docker 
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - jenkins-docker-certs:/certs/client 
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - 2376:2376
+    privileged: true
+    networks:
+      - jenkins
+    
+
+volumes:
+  jenkins_home:
+    driver : local
+  jenkins-docker-certs:
+    driver: local
+
+networks:
+  jenkins:

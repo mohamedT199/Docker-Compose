@@ -1,0 +1,18 @@
+version: '3'
+services:
+  PGadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    container_name: Pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL:-Test@ntgclarity.com}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD:-Test}
+    ports:
+      - 9000:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  pgadmin_data:
+    driver: local
+
